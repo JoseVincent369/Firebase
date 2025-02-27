@@ -7,7 +7,10 @@ import MoreInfo from "./pages/moreinfo/MoreInfo";
 import Academic from "./pages/academic/Academic";
 import Education from "./pages/education/Education";
 import Skill from "./pages/skill/Skill"; // Import Skill component
+<<<<<<< HEAD
 import Projects_main from "./pages/Projects/Projects_main"; // Import the Projects_main page
+=======
+>>>>>>> 1559bde4210ccc91b84d0aba1563d18126db8b62
 
 const App = () => {
   return (
@@ -20,7 +23,10 @@ const App = () => {
         <Route path="/academic" element={<Academic />} />
         <Route path="/education" element={<Education />} />
         <Route path="/skills" element={<Skill />} /> {/* Added Skills Route */}
+<<<<<<< HEAD
         <Route path="/projects" element={<Projects_main />} />
+=======
+>>>>>>> 1559bde4210ccc91b84d0aba1563d18126db8b62
       </Routes>
     </div>
   );
