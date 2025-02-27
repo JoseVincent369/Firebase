@@ -5,7 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 const Home = () => {
   const homeStyle = {
     minHeight: "100vh",
-    padding: "5rem 9% 5rem",
+    padding: "5rem 9%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -19,92 +19,99 @@ const Home = () => {
   };
 
   const heading1Style = {
+    fontSize: "1.4rem",
+    fontWeight: "400",
+    letterSpacing: "0.1rem",
+    color: "white",
+  };
+
+  const heading2Style = {
     fontSize: "3rem",
     fontWeight: "700",
     lineHeight: "1.3",
+    margin: "0.5rem 0",
   };
 
   const heading3Style = {
-    fontSize: "3rem",
+    fontSize: "2.5rem",
+    fontWeight: "600",
+    color: "white",
     marginBottom: "1rem",
-    fontWeight: "700",
   };
 
   const paragraphStyle = {
-    fontSize: "1.6rem",
-  };
-
-const imageContainerStyle = {
-  width: "20vw",
-  borderRadius: "49%", // Soft rounded edges instead of a circle
-  backgroundColor: "#ffa8e9", // Cozy pink background color
-  boxShadow: "0 0 25px #ffa8e9, 0 0 80px #ffa8e9, 0 0 120px #ffa8e9",
-  padding: "1.5rem", // Slightly increased padding for a balanced look
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center", // Soft glowing effect
-  transition: "box-shadow 0.3s ease-in-out", // Smooth hover transition
-};
-
-
-
-  const imageStyle = {
-    width: "20vw",
-    borderRadius: "49%",
-    boxShadow: "0 0 25px #ffa8e9, 0 0 80px #ffa8e9, 0 0 120px #ffa8e9",
-    cursor: "pointer",
-    transition: "0.2s linear",
+    fontSize: "1.2rem",
+    maxWidth: "550px",
+    lineHeight: "1.6",
   };
 
   const socialIconsStyle = {
     display: "flex",
-    gap: "2rem",
-    marginTop: "2rem",
+    gap: "1rem",
+    marginTop: "1.5rem",
   };
 
   const iconStyle = {
     display: "inline-flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "4rem",
-    height: "4rem",
-    backgroundColor: "transparent",
-    border: "0.2rem solid #ffa8e9",
-    fontSize: "2rem",
+    width: "3rem",
+    height: "3rem",
     borderRadius: "50%",
-    margin: "3rem 1.5rem 3rem 0",
-    transition: "0.3s ease",
+    border: "2px solid #ffa8e9",
+    fontSize: "1.5rem",
     color: "#ffa8e9",
+    transition: "0.3s ease",
   };
 
   const buttonStyle = {
     display: "inline-block",
-    padding: "1rem 2.8rem",
+    padding: "0.8rem 2rem",
     backgroundColor: "#ffa8e9",
-    borderRadius: "4rem",
-    fontSize: "1.6rem",
+    borderRadius: "2rem",
+    fontSize: "1.2rem",
     color: "white",
     fontWeight: "600",
     border: "2px solid #53aafd",
     transition: "0.3s ease",
     cursor: "pointer",
-    marginTop: "2rem",
+    marginTop: "1.5rem",
+    boxShadow: "0 0 15px #ffa8e9",
+  };
+
+  const imageContainerStyle = {
+    width: "20vw",
+    borderRadius: "50%",
+    backgroundColor: "#ffa8e9",
+    boxShadow: "0 0 30px #ffa8e9, 0 0 80px #ffa8e9, 0 0 120px #ffa8e9",
+    padding: "1.5rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    transition: "box-shadow 0.3s ease-in-out",
+  };
+
+  const imageStyle = {
+    width: "18vw",
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "0.2s linear",
   };
 
   return (
     <section id="home" style={homeStyle}>
       <div style={homeContentStyle}>
-        <h1 style={heading1Style}>
+        <p style={heading1Style}>
           WELCOME TO MY <span style={{ color: "#ffa8e9" }}>PORTFOLIO</span>
-        </h1>
-        <h2 style={heading3Style}>
+        </p>
+        <h2 style={heading2Style}>
           Hello, I'm <span style={{ color: "#ffa8e9" }}>Juliet Pinalas</span>
         </h2>
         <h3 style={heading3Style}>Graphic Designer</h3>
         <p style={paragraphStyle}>
           I'm a passionate Intern UI/UX designer who loves creating intuitive
           and beautiful digital experiences. I focus on making designs not just
-          look great but feel great.
+          look great but feel effortless for users.
         </p>
         <div style={socialIconsStyle}>
           <a href="#" style={iconStyle}>

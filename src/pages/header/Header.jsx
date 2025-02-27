@@ -7,10 +7,9 @@ const Header = () => {
     position: "fixed",
     top: "0",
     left: "0",
-    width: "100%",
+    width: "88%",
     padding: "1rem 9%",
     backgroundColor: "#58acfc", // Updated header background color
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -18,8 +17,8 @@ const Header = () => {
   };
 
   const logoStyle = {
-    fontSize: "3rem",
-    color: "#faacec",
+    fontSize: "1.5rem",
+    color: "white",
     fontWeight: "800",
     cursor: "pointer",
     transition: "transform 0.3s ease",
@@ -27,11 +26,11 @@ const Header = () => {
 
   const navStyle = {
     display: "flex",
-    gap: "4rem",
+    gap: "3.5rem",
   };
 
   const navLinkBaseStyle = {
-    fontSize: "1.8rem",
+    fontSize: "1.2rem",
     color: "white",
     fontWeight: "500",
     textDecoration: "none",
