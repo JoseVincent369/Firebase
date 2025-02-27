@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { FIRESTORE_DB } from "../../../public/firebaseutil/firebase_main"; // Ensure correct import
 import sample from "../../assets/sample.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const AboutMe = () => {
   const navigate = useNavigate();
+  const [aboutMe, setAboutMe] = useState({
+    biodata: "Loading...",
+    Role: "Loading...",
+  });
+
+  useEffect(() => {
+    const fetchAboutMe = async () => {
+      try {
+        const docRef = doc(FIRESTORE_DB, "julietPortfolio_Website", "AboutMe");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setAboutMe(docSnap.data());
+        } else {
+          console.log("No AboutMe document found.");
+        }
+      } catch (error) {
+        console.error("Error fetching AboutMe data:", error);
+      }
+    };
+
+    fetchAboutMe();
+  }, []);
 
   const aboutMeStyle = {
     minHeight: "100vh",
@@ -13,7 +38,7 @@ const AboutMe = () => {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#53aafd",
+    backgroundColor: "rgb(88, 172, 252)", // Updated background color
     color: "white",
     textAlign: "center",
   };
@@ -91,13 +116,8 @@ const AboutMe = () => {
           <h2 style={heading1Style}>
             About <span style={{ color: "#ffa8e9" }}>Me</span>
           </h2>
-          <h3 style={heading3Style}>Graphic Designer</h3>
-          <p style={paragraphStyle}>
-            I am a dedicated and motivated student currently gaining hands-on
-            experience. My goal is to complete my studies and apply my knowledge
-            to support my vision. I strive to learn, grow, and add creative
-            positivity to any organization I join.
-          </p>
+          <h3 style={heading3Style}>{aboutMe.Role || "Role not set"}</h3>
+          <p style={paragraphStyle}>{aboutMe.Biodata || "No biodata available"}</p>
           <button style={buttonStyle} onClick={() => navigate("/more-info")}>
             See more
           </button>

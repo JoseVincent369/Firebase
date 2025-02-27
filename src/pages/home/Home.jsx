@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { FIRESTORE_DB } from "../../../public/firebaseutil/firebase_main";
 import sample from "../../assets/sample.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Home = () => {
+  const [headerData, setHeaderData] = useState({
+    fname: "Loading...",
+    lname: "",
+    role: "Loading...",
+    content: "Loading...",
+  });
+
+  useEffect(() => {
+    const fetchHeaderData = async () => {
+      try {
+        const docRef = doc(FIRESTORE_DB, "julietPortfolio_Website", "Header_List");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setHeaderData(docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching header data:", error);
+      }
+    };
+
+    fetchHeaderData();
+  }, []);
+
   const homeStyle = {
     minHeight: "100vh",
     padding: "5rem 9%",
@@ -14,43 +42,12 @@ const Home = () => {
     color: "white",
   };
 
-  const homeContentStyle = {
-    textAlign: "left",
-  };
-
-  const heading1Style = {
-    fontSize: "1.4rem",
-    fontWeight: "400",
-    letterSpacing: "0.1rem",
-    color: "white",
-  };
-
-  const heading2Style = {
-    fontSize: "3rem",
-    fontWeight: "700",
-    lineHeight: "1.3",
-    margin: "0.5rem 0",
-  };
-
-  const heading3Style = {
-    fontSize: "2.5rem",
-    fontWeight: "600",
-    color: "white",
-    marginBottom: "1rem",
-  };
-
-  const paragraphStyle = {
-    fontSize: "1.2rem",
-    maxWidth: "550px",
-    lineHeight: "1.6",
-  };
-
-  const socialIconsStyle = {
-    display: "flex",
-    gap: "1rem",
-    marginTop: "1.5rem",
-  };
-
+  const homeContentStyle = { textAlign: "left" };
+  const heading1Style = { fontSize: "1.4rem", fontWeight: "400", letterSpacing: "0.1rem", color: "white" };
+  const heading2Style = { fontSize: "3rem", fontWeight: "700", lineHeight: "1.3", margin: "0.5rem 0" };
+  const heading3Style = { fontSize: "2.5rem", fontWeight: "600", color: "white", marginBottom: "1rem" };
+  const paragraphStyle = { fontSize: "1.2rem", maxWidth: "550px", lineHeight: "1.6" };
+  const socialIconsStyle = { display: "flex", gap: "1rem", marginTop: "1.5rem" };
   const iconStyle = {
     display: "inline-flex",
     justifyContent: "center",
@@ -63,7 +60,6 @@ const Home = () => {
     color: "#ffa8e9",
     transition: "0.3s ease",
   };
-
   const buttonStyle = {
     display: "inline-block",
     padding: "0.8rem 2rem",
@@ -78,7 +74,6 @@ const Home = () => {
     marginTop: "1.5rem",
     boxShadow: "0 0 15px #ffa8e9",
   };
-
   const imageContainerStyle = {
     width: "20vw",
     borderRadius: "50%",
@@ -90,13 +85,7 @@ const Home = () => {
     alignItems: "center",
     transition: "box-shadow 0.3s ease-in-out",
   };
-
-  const imageStyle = {
-    width: "18vw",
-    borderRadius: "50%",
-    cursor: "pointer",
-    transition: "0.2s linear",
-  };
+  const imageStyle = { width: "18vw", borderRadius: "50%", cursor: "pointer", transition: "0.2s linear" };
 
   return (
     <section id="home" style={homeStyle}>
@@ -105,14 +94,10 @@ const Home = () => {
           WELCOME TO MY <span style={{ color: "#ffa8e9" }}>PORTFOLIO</span>
         </p>
         <h2 style={heading2Style}>
-          Hello, I'm <span style={{ color: "#ffa8e9" }}>Juliet Pinalas</span>
+          Hello, I'm <span style={{ color: "#ffa8e9" }}>{headerData.fname} {headerData.lname}</span>
         </h2>
-        <h3 style={heading3Style}>Graphic Designer</h3>
-        <p style={paragraphStyle}>
-          I'm a passionate Intern UI/UX designer who loves creating intuitive
-          and beautiful digital experiences. I focus on making designs not just
-          look great but feel effortless for users.
-        </p>
+        <h3 style={heading3Style}>{headerData.role}</h3>
+        <p style={paragraphStyle}>{headerData.content}</p>
         <div style={socialIconsStyle}>
           <a href="#" style={iconStyle}>
             <i className="fab fa-twitter"></i>
@@ -127,7 +112,6 @@ const Home = () => {
             <i className="fab fa-instagram"></i>
           </a>
         </div>
-
         <a href="/path-to-your-cv.pdf" download style={buttonStyle}>
           Download CV
         </a>
