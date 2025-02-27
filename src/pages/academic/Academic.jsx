@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Academic = () => {
+  const navigate = useNavigate();
+
   const pageStyle = {
     minHeight: "100vh",
     display: "flex",
@@ -55,6 +58,16 @@ const Academic = () => {
     transition: "transform 0.2s ease-in-out",
   };
 
+  const handleReadMoreClick = (item) => {
+    if (item === "Education") {
+      navigate("/education");
+    } else if (item === "Skills") {
+      navigate("/skills"); // Navigate to Skills page
+    } else if (item === "Experience") {
+      navigate("/experience"); // Add this if you have an Experience page
+    }
+  };
+
   return (
     <div style={pageStyle}>
       <h2 style={headingStyle}>
@@ -65,7 +78,9 @@ const Academic = () => {
           <div
             key={index}
             style={cardStyle}
-            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.transform = "scale(1.05)")
+            }
             onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
             <h3>{item}</h3>
@@ -73,6 +88,7 @@ const Academic = () => {
               style={buttonStyle}
               onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
               onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+              onClick={() => handleReadMoreClick(item)}
             >
               Read more
             </button>
